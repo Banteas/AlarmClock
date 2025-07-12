@@ -4,13 +4,14 @@ import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 public class Main{
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
 
         Scanner scanner = new Scanner(System.in);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
         LocalTime alarmTime = null;
         String filePath = "src/pianos-by-jtwayne-7-174717.wav";
+
 
         while (alarmTime == null){
             try {
@@ -28,6 +29,10 @@ public class Main{
         AlarmClock alarmClock = new AlarmClock(alarmTime,filePath,scanner);
         Thread alarmThread = new Thread(alarmClock);
         alarmThread.start();
+        alarmThread.join();
+        scanner.close();
+        System.out.println("Have a nice day!!");
+
 
 
 

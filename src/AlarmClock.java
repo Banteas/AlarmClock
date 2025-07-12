@@ -50,14 +50,11 @@ public class AlarmClock implements Runnable {
         try(AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile)) {
             Clip clip = AudioSystem.getClip();
             clip.open(audioStream);
-            clip.start();
-            System.out.print("Press *Enter* to stop the alarm: ");
+            clip.loop(Clip.LOOP_CONTINUOUSLY);
+            System.out.print("Press *Enter* to stop the alarm:");
             scanner.nextLine();
             clip.stop();
 
-
-
-            scanner.close();
 
         }
         catch (UnsupportedAudioFileException e) {
